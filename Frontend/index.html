@@ -34,6 +34,98 @@
           Primarily suitable for investors with a 3- to 5-year horizon
         </h4>
       </div>
+      <form id="inventoryAuthForm" autocomplete="off">
+        <label for="inventoryPassword">Password</label>
+        <input
+          id="inventoryPassword"
+          name="inventoryPassword"
+          type="password"
+          inputmode="text"
+          autocomplete="off"
+          required
+        />
+        <button type="submit">Unlock</button>
+        <p id="inventoryAuthMessage" aria-live="polite"></p>
+      </form>
+
+      <table id="inventoryTable" hidden>
+        <thead>
+          <tr>
+            <th>Inventory</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Inventory 1</td></tr>
+          <tr><td>Inventory 2</td></tr>
+          <tr><td>Inventory 3</td></tr>
+          <tr><td>Inventory 4</td></tr>
+          <tr><td>Inventory 5</td></tr>
+          <tr><td>Inventory 6</td></tr>
+        </tbody>
+      </table>
+
+      <script>
+        (function () {
+          const form = document.getElementById("inventoryAuthForm");
+          const passwordInput = document.getElementById("inventoryPassword");
+          const message = document.getElementById("inventoryAuthMessage");
+          const table = document.getElementById("inventoryTable");
+
+          const FADE_MS = 250;
+          let hideTimer = null;
+
+          function clearHideTimer() {
+            if (hideTimer) {
+              clearTimeout(hideTimer);
+              hideTimer = null;
+            }
+          }
+
+          function setMessage(text) {
+            message.textContent = text;
+          }
+
+          function revealTableSoftly() {
+            clearHideTimer();
+            table.hidden = false;
+            table.style.transition = "opacity " + FADE_MS + "ms ease";
+            table.style.opacity = "0";
+            table.style.pointerEvents = "none";
+
+            requestAnimationFrame(() => {
+              table.style.opacity = "1";
+              table.style.pointerEvents = "";
+            });
+          }
+
+          function hideTableSoftly() {
+            clearHideTimer();
+            if (table.hidden) return;
+
+            table.style.transition = "opacity " + FADE_MS + "ms ease";
+            table.style.opacity = "0";
+            table.style.pointerEvents = "none";
+
+            hideTimer = setTimeout(() => {
+              table.hidden = true;
+              table.style.pointerEvents = "";
+            }, FADE_MS);
+          }
+
+          form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const pw = passwordInput.value;
+
+            if (pw === "Warren") {
+              setMessage("");
+              revealTableSoftly();
+            } else {
+              setMessage("Incorrect password.");
+              hideTableSoftly();
+            }
+          });
+        })();
+      </script>
     </main>
   </body>
 </html>
