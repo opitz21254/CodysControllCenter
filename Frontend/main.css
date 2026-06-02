@@ -1,0 +1,8 @@
+.title-container{
+    width: min(900px, 100%);
+}
+
+.main-title, .main-subtitle {
+  text-align: center;
+  vertical-align: top;
+}

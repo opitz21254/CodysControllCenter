@@ -22,6 +22,12 @@ body, p {
   margin: 0;
 }
 
+main {
+  display: grid;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
 header {
  /* background-color: var(--basic-girl-grey); */
   margin: 1rem;
