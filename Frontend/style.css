@@ -11,14 +11,16 @@
 }
 
 .container {
-  min-height: 66px; /*un-necessary? */
+  /* min-height: 33px; un-necessary? */
+  grid-auto-rows: auto;
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   column-gap: 1rem;
-  grid-auto-rows: minmax(66px, auto);
+  margin-top: 40px;
 }
 
-body, p {
+body,
+p {
   margin: 0;
 }
 
@@ -29,22 +31,23 @@ main {
 }
 
 header {
- /* background-color: var(--basic-girl-grey); */
-  margin: 1rem;
+  /* background-color: var(--basic-girl-grey); */
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .header-left {
-  vertical-align: top;
+  vertical-align: center;
 }
 
 .header-center {
   text-align: center;
-  vertical-align: top;
+  vertical-align: center;
 }
 
 .header-right {
   text-align: right;
-  vertical-align: top;
+  vertical-align: center;
 }
 
 .header-bold {
